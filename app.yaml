@@ -1,5 +1,2 @@
 runtime: python310
 
-handlers:
-  http_headers:
-    Access-Control-Allow-Origin: *
