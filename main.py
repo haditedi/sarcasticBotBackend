@@ -19,7 +19,6 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 env_variable = os.getenv("DEV")
 
 @app.route("/", methods =["POST","GET"])
-@limiter.limit("1 per day")
 def index():
    data = request.json
    
