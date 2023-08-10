@@ -20,8 +20,9 @@ env_variable = os.getenv("DEV")
 
 @app.route("/", methods =["POST","GET"])
 def index():
+   print("REQUEST",request)
    data = request.json
-   
+   print("DATA JSON",data)
    if data["key"] != "123456":
        print("ABORT")
        return make_response(jsonify({"error":"something went wrong"}), 500)
@@ -30,6 +31,9 @@ def index():
    for item in data:
        if "id" in item:
            del item["id"]
+       if len(item["content"]) == 0:
+           print("LENGTH",len(item["content"]))
+           return make_response(jsonify({"error": "must not be empty"}), 500)
    print("DATA",data)
    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
