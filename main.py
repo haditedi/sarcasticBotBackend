@@ -1,20 +1,21 @@
 from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
+# from flask_limiter import Limiter
+# from flask_limiter.util import get_remote_address
 from dotenv import load_dotenv
 import os
-import openai, requests
+import openai
 load_dotenv()
 
 
 app = Flask(__name__)
-CORS(app)
-limiter = Limiter(
-    get_remote_address,
-    app=app,
-    default_limits=["200 per day", "50 per hour"]
-)
+# CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "https://tedi-ai.vercel.app/"}})
+# limiter = Limiter(
+#     get_remote_address,
+#     app=app,
+#     default_limits=["200 per day", "50 per hour"]
+# )
 openai.api_key = os.getenv("OPENAI_API_KEY")
 env_variable = os.getenv("DEV")
 
