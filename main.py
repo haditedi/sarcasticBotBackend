@@ -9,8 +9,8 @@ load_dotenv()
 
 
 app = Flask(__name__)
-# CORS(app)
-CORS(app, resources={r"/": {"origins": "https://tedi-ai.vercel.app"}})
+CORS(app)
+# CORS(app, resources={r"/": {"origins": "https://tedi-ai.vercel.app"}})
 # limiter = Limiter(
 #     get_remote_address,
 #     app=app,
