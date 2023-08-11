@@ -9,20 +9,14 @@ load_dotenv()
 
 
 app = Flask(__name__)
-CORS(app)
-# CORS(app, resources={r"/": {"origins": "https://tedi-ai.vercel.app"}})
+# CORS(app)
+CORS(app, resources={r"/": {"origins": "https://tedi-ai.vercel.app"}})
 # limiter = Limiter(
 #     get_remote_address,
 #     app=app,
 #     default_limits=["200 per day", "50 per hour"]
 # )
 openai.api_key = os.getenv("OPENAI_API_KEY")
-env_variable = os.getenv("DEV")
-
-if env_variable == "development":
-   CORS(app)
-else:
-   CORS(app, resources={r"/": {"origins": "https://tedi-ai.vercel.app"}}) 
 
 @app.route("/", methods =["POST","GET"])
 def index():
@@ -49,6 +43,5 @@ def index():
    print(response) 
    return jsonify({"result" : response})
 
-if env_variable == "development":
-    if __name__ == "__main__":
-        app.run(host="0.0.0.0", debug = True)
+if __name__ == "__main__":
+   app.run(host="0.0.0.0", debug = True)
