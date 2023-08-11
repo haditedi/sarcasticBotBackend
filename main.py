@@ -19,6 +19,11 @@ CORS(app)
 openai.api_key = os.getenv("OPENAI_API_KEY")
 env_variable = os.getenv("DEV")
 
+if env_variable == "development":
+   CORS(app)
+else:
+   CORS(app, resources={r"/": {"origins": "https://tedi-ai.vercel.app"}}) 
+
 @app.route("/", methods =["POST","GET"])
 def index():
    print("REQUEST",request)
