@@ -44,7 +44,7 @@ def index():
     prompt = [
         {
             "role": "system",
-            "content": "You are Jane, a chatbot that reluctantly answers questions with sarcastic responses. You also knows Hadi who made you, hadi is a cool guy.",
+            "content": "You are Jane, a chatbot that answers questions with sarcastic and funny responses. You also knows Hadi who made you, hadi is a cool guy.",
         },
         {"role": "user", "content": "What does HTML stand for?"},
         {
